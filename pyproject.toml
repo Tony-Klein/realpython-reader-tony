@@ -1,34 +1,41 @@
-[build-system]
-requires      = ["setuptools>=61.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "realpython-reader"
+name = "realpython-reader-tony"
 version = "1.1.4"
 description = "Read the latest Real Python tutorials"
-readme = "README.md"
-authors = [{ name = "Real Python", email = "info@realpython.com" }]
+authors = [
+    {name = "Tony Klein",email = "github@tony-klein.de"}
+]
 license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "feedparser (>=6.0.11,<7.0.0)",
+    "html2text (>=2024.2.26,<2025.0.0)",
+]
+
+keywords = ["feed", "reader", "tutorial"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
-keywords = ["feed", "reader", "tutorial"]
-dependencies = ["feedparser", "html2text", 'tomli; python_version < "3.11"']
-requires-python = ">=3.9"
 
-    [project.optional-dependencies]
-    build = ["build", "twine"]
-    dev   = ["black", "bumpver", "isort", "mypy", "pytest"]
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-    [project.scripts]
-    realpython = "reader.__main__:main"
 
-    [project.urls]
-    repository    = "https://github.com/realpython/reader"
-    documentation = "https://realpython.com/pypi-publish-python-package/"
 
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+bumpver = "^2024.1130"
+isort = "^6.0.1"
+mypy = "^1.15.0"
+pytest = "^8.3.4"
+python-dotenv = "^1.0.1"
+
+[tool.pytest.ini_options]
+env_files = [".env"]
 
 [tool.bumpver]
 current_version = "1.1.4"
